@@ -1,0 +1,271 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "New Collection",
+    "version": "1.0.0-oas3"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/admin/signup": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "admin/SignUp",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/admin_signup_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email must be required."
+          },
+          "401": {
+            "description": "Password must be required."
+          },
+          "402": {
+            "description": "Error on query exception."
+          },
+          "405": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/customer/signup": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "customer/SignUp",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/customer_signup_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email must be required."
+          },
+          "401": {
+            "description": "Password must be required."
+          },
+          "402": {
+            "description": "Error on query exception."
+          },
+          "405": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/admin/signin": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "customer/SignIn",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/admin_signin_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email must be required."
+          },
+          "401": {
+            "description": "Password must be required."
+          },
+          "402": {
+            "description": "Error on query exception."
+          },
+          "405": {
+            "description": "Email does not exists."
+          },
+          "406": {
+            "description": "Password wrong."
+          }
+        }
+      }
+    },
+    "/customer/signin": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "customer/SignIn",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/customer_signin_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bearer token like this. eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJrYXV0b21hbjk5OTIzQGdtYWlsLmNvbTIiLCJpc19hZG1pbiI6MSwicGFzc3dvcmQiOiIyNWQ1NWFkMjgzYWE0MDBhZjQ2NGM3NmQ3MTNjMDdhZCIsImlhdCI6MTY1MjE2MzQ0OSwiZXhwIjoxNjUyMTY3MDQ5fQ.aUhyAXY4QQDtcKwKDDwyP75UWXxgTrRdUfJmIE5JT38"
+          },
+          "400": {
+            "description": "Email must be required."
+          },
+          "401": {
+            "description": "Password must be required."
+          },
+          "402": {
+            "description": "Error on query exception."
+          },
+          "405": {
+            "description": "Email does not exists."
+          },
+          "406": {
+            "description": "Password wrong."
+          }
+        }
+      }
+    },
+    "/admin/helloworld": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "admin/helloworld",
+        "responses": {
+          "200": {
+            "description": "hello world"
+          },
+          "400": {
+            "description": "only admin can access"
+          },
+          "403": {
+            "description": "access error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/helloworld": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "customer/helloworld",
+        "responses": {
+          "200": {
+            "description": "hello world"
+          },
+          "400": {
+            "description": "only admin can access"
+          },
+          "403": {
+            "description": "access error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "admin_signup_body": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "ak47@outlook.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 12345678
+          },
+          "is_admin": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "customer_signup_body": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "ak47@outlook.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 12345678
+          },
+          "is_admin": {
+            "type": "integer",
+            "example": 0
+          }
+        }
+      },
+      "customer_signin_body": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "kautoman99923@gmail.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 12345678
+          }
+        }
+      },
+      "admin_signin_body": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "kautoman99923@gmail.com"
+          },
+          "password": {
+            "type": "integer",
+            "example": 12345678
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
